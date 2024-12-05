@@ -1,4 +1,4 @@
-# PrivDPR: Synthetic Graph Publishing with Deep PageRank under Differential Privacy
+## PrivDPR: Synthetic Graph Publishing with Deep PageRank under Differential Privacy
 
 ## Requirements
 - python 3.6.5
