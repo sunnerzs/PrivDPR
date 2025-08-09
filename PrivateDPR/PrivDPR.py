@@ -141,7 +141,10 @@ class DiGraSynModel:
 
     def Gau_Noise(self, tensor, sens_value):
         total_iters = args.n_epochs * math.floor(self.n_node / args.batch_size)
-        # split privacy parameters delta and epsilon
+        '''
+        Split privacy parameters and epsilon, where epsilon is not divided by T 
+        because the sens_value is divided by T according to Eq (13), and T is canceled out
+        '''
         sigma = tf.sqrt(2 * tf.log(1.25 / (args.delta / total_iters))) / args.epsilon
         s = tensor.get_shape().as_list()  # get shape of the tensor
         Gau_noise = tf.random_normal(s, mean=0.0, stddev=sigma * sens_value)
