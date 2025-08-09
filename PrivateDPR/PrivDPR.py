@@ -129,7 +129,7 @@ class DiGraSynModel:
                             for this situation is that a one-hot encoding was applied before the input embedding matrix, 
                             which may result in many zero gradients in the gradient with respect to the input matrix. Since 
                             gradient information is not released and only the synthetic graph is published, noise can be added 
-                            only to the non-zero gradients in the future, which helps improve the situation.
+                            only to the non-zero gradients in the future to help improve the situation.
                             '''
                             noise_g = g + self.Gau_Noise(g, args.g_clip)
                             self.grads_and_vars[i] = (noise_g, v)
