@@ -120,16 +120,14 @@ class DiGraSynModel:
                     if g is not None and v is not None:
                         if "node_embedding_mat" in v.name:
                             '''
-                            Note that when printing the L2 norm of the noisy gradient and 
-                            the L2 norm of the true gradient, the noise added to the noise gradient 
-                            is many orders of magnitude larger than the true gradient. This leads 
-                            to difficulty in maintaining the number of triangles in the generated synthetic 
-                            graph. Indeed, the results of TC in Tables 2 and 3 formally confirm this point in the paper, 
-                            while the distribution information is relatively well maintained. One important reason 
-                            for this situation is that a one-hot encoding was applied before the input embedding matrix, 
-                            which may result in many zero gradients in the gradient with respect to the input matrix. Since 
-                            gradient information is not released and only the synthetic graph is published, noise can be added 
-                            only to the non-zero gradients in the future to help improve the situation.
+                            Note that when printing the L2 norm of the noisy gradient and the L2 norm of the true gradient, 
+                            the noise gradient is many orders of magnitude larger than the true gradient. This leads 
+                            to difficulty in maintaining the number of triangles in the generated synthetic graph. Indeed, 
+                            the results of TC in Tables 2 and 3 formally confirm this point in the paper, while the distribution 
+                            information is relatively well maintained. One important reason for this situation is that a one-hot 
+                            encoding was applied before the input embedding matrix, which may result in many zero gradients in the 
+                            gradient with respect to the input matrix. Since gradient information is not released and only the synthetic 
+                            graph is published, noise can be added only to the non-zero gradients in the future to help improve the situation.
                             '''
                             noise_g = g + self.Gau_Noise(g, args.g_clip)
                             self.grads_and_vars[i] = (noise_g, v)
