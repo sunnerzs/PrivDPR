@@ -125,7 +125,7 @@ class DiGraSynModel:
                             is many orders of magnitude larger than the gradient itself. This leads 
                             to difficulty in maintaining the number of triangles in the generated synthetic 
                             graph compared to the original graph. Indeed, Tables 2 and 3 formally confirm 
-                            this point, but the distribution information is relatively well maintained. One 
+                            this point in the paper, but the distribution information is relatively well maintained. One 
                             reason for this situation is that a one-hot encoding was applied before the input 
                             embedding matrix, which results in many zero gradients in the input matrix. Since 
                             gradient information is not released and only the synthetic graph is published, noise 
