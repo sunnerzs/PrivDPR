@@ -124,12 +124,11 @@ class DiGraSynModel:
                             the L2 norm of the true gradient, the noise added to the noise gradient 
                             is many orders of magnitude larger than the true gradient. This leads 
                             to difficulty in maintaining the number of triangles in the generated synthetic 
-                            graph. Indeed, Tables 2 and 3 formally confirm 
-                            this point in the paper, but the distribution information is relatively well maintained. One 
-                            reason for this situation is that a one-hot encoding was applied before the input 
-                            embedding matrix, which may result in many zero gradients with respect to the input matrix. Since 
-                            gradient information is not released and only the synthetic graph is published, noise 
-                            can be added only to the non-zero gradients in the future, which helps improve the situation.
+                            graph. Indeed, Tables 2 and 3 formally confirm this point in the paper, but the distribution 
+                            information is relatively well maintained. One reason for this situation is that a one-hot encoding 
+                            was applied before the input embedding matrix, which may result in many zero gradients in the gradient 
+                            with respect to the input matrix. Since gradient information is not released and only the synthetic graph 
+                            is published, noise can be added only to the non-zero gradients in the future, which helps improve the situation.
                             '''
                             noise_g = g + self.Gau_Noise(g, args.g_clip)
                             self.grads_and_vars[i] = (noise_g, v)
