@@ -119,6 +119,18 @@ class DiGraSynModel:
                 for i, (g, v) in enumerate(self.grads_and_vars):  # for each pair
                     if g is not None and v is not None:
                         if "node_embedding_mat" in v.name:
+                            '''
+                            Note that when printing the L2 norm of the noisy gradient and 
+                            the L2 norm of the true gradient, the noise added to each gradient 
+                            is many orders of magnitude larger than the gradient itself. This leads 
+                            to difficulty in maintaining the number of triangles in the generated synthetic 
+                            graph compared to the original graph. Indeed, Tables 2 and 3 formally confirm 
+                            this point, but the distribution information is relatively well maintained. One 
+                            reason for this situation is that a one-hot encoding was applied before the input 
+                            embedding matrix, which results in many zero gradients in the input matrix. Since 
+                            gradient information is not released and only the synthetic graph is published, noise 
+                            can be added only to the non-zero gradients in the future, which helps improve the situation.
+                            '''
                             noise_g = g + self.Gau_Noise(g, args.g_clip)
                             self.grads_and_vars[i] = (noise_g, v)
                         else:
